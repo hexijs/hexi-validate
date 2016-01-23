@@ -1,0 +1,45 @@
+{
+  "name": "hexi-validate",
+  "version": "0.0.0",
+  "description": "A hexi validation plugin",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/{**/,/}*.js",
+    "coverage": "istanbul cover _mocha test/{**/,/}*.js -- -R spec",
+    "precoveralls": "istanbul cover _mocha test/{**/,/}*.js --report lcovonly -- -R spec && npm i coveralls@2",
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "postcoveralls": "rm -rf ./coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/sitegate/sitegate.git"
+  },
+  "keywords": [
+    "hexi",
+    "validation"
+  ],
+  "author": {
+    "name": "Zoltan Kochan",
+    "email": "zoltan.kochan@gmail.com",
+    "url": "http://kochan.io"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zkochan/hexi-validate/issues"
+  },
+  "files": [
+    "index.js"
+  ],
+  "homepage": "https://github.com/zkochan/hexi-validate#readme",
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "hexi": "^0.2.0",
+    "istanbul": "^0.4.2",
+    "joi": "^7.2.2",
+    "mocha": "^2.3.4",
+    "supertest": "^1.1.0"
+  },
+  "dependencies": {
+    "express-validation": "^0.4.5"
+  }
+}
