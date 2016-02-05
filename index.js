@@ -2,7 +2,7 @@
 const validate = require('express-validation')
 
 module.exports = function(server, opts) {
-  server.pre('route', (next, opts) => {
+  server.route.pre((next, opts) => {
     if (!opts || !opts.config || !opts.config.validate) return next(opts)
 
     let taskName = 'validate:' + opts.path

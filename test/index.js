@@ -9,15 +9,16 @@ const bodyParser = require('body-parser')
 describe('auth', function() {
   let server
 
-  beforeEach(function(next) {
-    server = new hexi.Server()
+  beforeEach(function() {
+    server = hexi()
 
-    server.express.use(bodyParser.json())
-    server.express.use(bodyParser.urlencoded({
+    server.task('json-parser', bodyParser.json())
+    server.task('extended-parser', bodyParser.urlencoded({
       extended: true,
     }))
+    server.task('default', ['json-parser', 'extended-parser'])
 
-    server.register([hexiValidate], next)
+    return server.register(hexiValidate)
   })
 
   it('should return success if validation passess', function(done) {
