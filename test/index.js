@@ -1,27 +1,28 @@
 'use strict'
-const expect = require('chai').expect
+const describe = require('mocha').describe
+const it = require('mocha').it
+const beforeEach = require('mocha').beforeEach
 const hexi = require('hexi')
 const hexiValidate = require('..')
 const request = require('supertest')
 const joi = require('joi')
 const bodyParser = require('body-parser')
 
-describe('auth', function() {
+describe('auth', function () {
   let server
 
-  beforeEach(function() {
+  beforeEach(function () {
     server = hexi()
 
-    server.task('json-parser', bodyParser.json())
-    server.task('extended-parser', bodyParser.urlencoded({
+    server.express.use(bodyParser.json())
+    server.express.use(bodyParser.urlencoded({
       extended: true,
     }))
-    server.task('default', ['json-parser', 'extended-parser'])
 
     return server.register(hexiValidate)
   })
 
-  it('should return success if validation passess', function(done) {
+  it('should return success if validation passess', function (done) {
     server.route({
       path: '/',
       method: 'GET',
@@ -32,7 +33,7 @@ describe('auth', function() {
           },
         },
       },
-      handler(req, res) {
+      handler (req, res) {
         res.status(200).end()
       },
     })
@@ -43,7 +44,7 @@ describe('auth', function() {
       .expect(200, done)
   })
 
-  it('should return error if headers validation fails', function(done) {
+  it('should return error if headers validation fails', function (done) {
     server.route({
       path: '/',
       method: 'GET',
@@ -54,7 +55,7 @@ describe('auth', function() {
           },
         },
       },
-      handler(req, res) {
+      handler (req, res) {
         res.status(200).end()
       },
     })
@@ -64,7 +65,7 @@ describe('auth', function() {
       .expect(400, done)
   })
 
-  it('should return error if body validation fails', function(done) {
+  it('should return error if body validation fails', function (done) {
     server.route({
       path: '/',
       method: 'GET',
@@ -75,7 +76,7 @@ describe('auth', function() {
           },
         },
       },
-      handler(req, res) {
+      handler (req, res) {
         res.status(200).end()
       },
     })

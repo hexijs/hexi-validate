@@ -16,6 +16,7 @@
   },
   "keywords": [
     "hexi",
+    "hexi-plugin",
     "validation"
   ],
   "author": {
@@ -34,7 +35,8 @@
   "devDependencies": {
     "body-parser": "^1.14.2",
     "chai": "^3.4.1",
-    "hexi": "^0.5.0",
+    "express": "^4.13.4",
+    "hexi": "^0.8.0",
     "istanbul": "^0.4.2",
     "joi": "^7.2.2",
     "mocha": "^2.3.4",

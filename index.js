@@ -1,15 +1,11 @@
 'use strict'
 const validate = require('express-validation')
 
-module.exports = function(server, opts) {
+module.exports = (server, opts) => {
   server.route.pre((next, opts) => {
-    if (!opts || !opts.config || !opts.config.validate) return next(opts)
+    if (!opts || !opts.config || !opts.config.validate) return next.applySame()
 
-    let taskName = 'validate:' + opts.path
-    server.task(taskName, validate(opts.config.validate))
-
-    opts.task =  opts.task || []
-    opts.task = [taskName].concat(opts.task)
+    opts.pre.push(validate(opts.config.validate))
     next(opts)
   })
 }
