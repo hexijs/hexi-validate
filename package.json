@@ -1,6 +1,6 @@
 {
   "name": "hexi-validate",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A hexi validation plugin",
   "main": "index.js",
   "scripts": {
